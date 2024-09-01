@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Confirm Deletion</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-warning" role="alert">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <p>Are you sure you want to delete user {{ user.username }}?</p>
+    <form method="POST" action="{{ url_for('main.delete_user', id=user.id) }}">
+        <div class="form-group">
+            <label for="password">Enter your password to confirm deletion:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Confirm Deletion</button>
+        <a href="{{ url_for('main.users') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

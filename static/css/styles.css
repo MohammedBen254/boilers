@@ -1,0 +1,56 @@
+/* Base styles for larger screens */
+body {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+p {
+    font-size: 0.8em;
+}
+.container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for phones (screens less than 600px wide) */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* Smaller font size for smaller screens */
+    }
+
+    h1 {
+        font-size: 1em; /* Adjust size of headers for small screens */
+    }
+
+    h2 {
+        font-size: 0.8em;
+    }
+
+    p {
+        font-size: 0.6em;
+    }
+
+    .container {
+        padding: 8px; /* Reduced padding for smaller screens */
+    }
+
+    .form-control {
+        font-size: 0.7em; /* Adjust form input sizes */
+    }
+
+    .btn {
+        font-size: 0.6em; /* Adjust button sizes */
+        padding: 5px 10px; /* Adjust button padding */
+    }
+    .table th {
+        font-size: 14px;
+    }
+}

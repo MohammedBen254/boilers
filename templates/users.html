@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Users Management</h1>
+
+<a href="{{ url_for('main.new_user') }}" class="btn btn-success mb-3">Add New User</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome d'utillisateur</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ 'Admin' if user.is_admin else 'User' }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('main.toggle_admin', user_id=user.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-warning">
+                        {% if user.is_admin %}
+                            Supprimer Accès
+                        {% else %}
+                            Devenir Admin
+                        {% endif %}
+                    </button>
+                </form>
+                <form method="POST" action="{{ url_for('main.delete_user', id=user.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

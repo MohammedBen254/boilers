@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Boilers</h1>
+<!-- Search Form -->
+<form method="get" action="{{ url_for('main.dashboard') }}" class="mb-4">
+    <div class="input-group">
+        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request.args.get('search', '') }}">
+        <button class="btn btn-primary ml-1" type="submit">Search</button>
+    </div>
+</form>
+<div class="table-responsive">
+<table class="table table-striped">
+    <thead>
+        <tr style="font-size: 13px;">
+            <!-- <th>ID</th> -->
+            <th>Matricule</th>
+            <th>Date d'installation</th>
+            <th>Fin de garantie</th>
+            <th>Client</th>
+            <th>Responsable</th>
+            <th>Dernier modification</th>
+            {% if session.get('is_admin') %}
+            <th>Operation</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for boiler in boilers %}
+        <tr style="font-size: 11px;">
+            <!-- <td>{{ boiler.id }}</td> -->
+            <td>{{ boiler.matricul }}</td>
+            <td>{{ boiler.installation_date }}</td>
+            <td>{{ boiler.warranty_end }}</td>
+            <td>{{ boiler.client_name }}</td>
+            <td>{{ boiler.responsible_person }}</td>
+            <td>{{ boiler.last_modified }}</td>
+            {% if session.get('is_admin') %}
+            <td>
+                <a href="{{ url_for('main.edit_boiler', id=boiler.id) }}" class="btn btn-primary btn-sm">Modifier</a>
+                <a href="{{ url_for('main.delete_boiler', id=boiler.id) }}" class="btn btn-danger btn-sm">Supprimer</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% if session.get('is_admin') %}
+<a href="{{ url_for('main.add_boiler') }}" class="btn btn-success">Ajouter une Chaudieres</a>
+{% endif %}
+{% endblock %}

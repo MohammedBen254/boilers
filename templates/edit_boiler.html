@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit Boiler</h1>
+<form method="POST" action="{{ url_for('main.edit_boiler', id=boiler.id) }}">
+    <div class="form-group">
+        <label for="installation_date">Installation Date</label>
+        <input type="text" class="form-control" id="installation_date" name="installation_date" value="{{ boiler.installation_date }}" required>
+    </div>
+    <div class="form-group">
+        <label for="warranty_end">Warranty End Date</label>
+        <input type="text" class="form-control" id="warranty_end" name="warranty_end" value="{{ boiler.warranty_end }}" required>
+    </div>
+    <div class="form-group">
+        <label for="client_name">Client Name</label>
+        <input type="text" class="form-control" id="client_name" name="client_name" value="{{ boiler.client_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="responsible_person">Responsible Person</label>
+        <input type="text" class="form-control" id="responsible_person" name="responsible_person" value="{{ boiler.responsible_person }}" required>
+    </div>
+    <div class="form-group">
+        <label for="last_modified">Last Modified</label>
+        <input type="text" class="form-control" id="last_modified" name="last_modified" value="{{ boiler.last_modified }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Boiler</button>
+</form>
+{% endblock %}
